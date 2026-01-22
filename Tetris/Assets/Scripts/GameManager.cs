@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // 🔹 맵 경계 (네가 정한 값)
     public static int minX = -5;
     public static int maxX = 6;
     public static int minY = -3;
@@ -21,7 +20,6 @@ public class GameManager : MonoBehaviour
         grid = new Transform[width, height];
     }
 
-    // ⭐ 월드 좌표 → 그리드 좌표
     public static Vector2Int WorldToGrid(Vector2 worldPos)
     {
         int x = Mathf.RoundToInt(worldPos.x - minX);
@@ -29,7 +27,6 @@ public class GameManager : MonoBehaviour
         return new Vector2Int(x, y);
     }
 
-    // ⭐ 이동/회전 판정 핵심
     public static bool IsValidPosition(Transform tetromino)
     {
         foreach (Transform block in tetromino)
@@ -37,19 +34,16 @@ public class GameManager : MonoBehaviour
             Vector2 pos = Round(block.position);
             Vector2Int gPos = WorldToGrid(pos);
 
-            // 범위 체크
             if (gPos.x < 0 || gPos.x >= width ||
                 gPos.y < 0 || gPos.y >= height)
                 return false;
 
-            // 다른 블록 체크
             if (grid[gPos.x, gPos.y] != null)
                 return false;
         }
         return true;
     }
 
-    // ⭐ 고정될 때 grid 변경
     public static void AddToGrid(Transform tetromino)
     {
         foreach (Transform block in tetromino)
@@ -60,7 +54,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 🔹 줄 삭제
     public static void DeleteFullLines()
     {
         for (int y = 0; y < height; y++)
