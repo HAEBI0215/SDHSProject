@@ -48,7 +48,13 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform block in tetromino)
         {
-            Vector2 pos = Round(block.position);
+            Vector2 pos = new Vector2(
+                Mathf.Round(block.position.x),
+                Mathf.Round(block.position.y)
+            );
+
+            block.position = pos;
+
             Vector2Int gPos = WorldToGrid(pos);
             grid[gPos.x, gPos.y] = block;
         }
@@ -105,5 +111,26 @@ public class GameManager : MonoBehaviour
     static Vector2 Round(Vector2 v)
     {
         return new Vector2(Mathf.Round(v.x), Mathf.Round(v.y));
+    }
+
+    void OnDrawGizmos()
+    {
+        if (grid == null) return;
+
+        Gizmos.color = Color.gray;
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                Vector3 worldPos = new Vector3(
+                    x + minX,
+                    y + minY,
+                    0
+                );
+
+                Gizmos.DrawWireCube(worldPos, Vector3.one);
+            }
+        }
     }
 }
