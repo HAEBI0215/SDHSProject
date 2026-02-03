@@ -12,12 +12,17 @@ public class GameManager : MonoBehaviour
 
     public static Transform[,] grid;
 
+    public GameObject pause;
+    public bool isPaused = false;
+
     void Awake()
     {
         width = maxX - minX + 1;
         height = maxY - minY + 1;
 
         grid = new Transform[width, height];
+
+        pause.SetActive(false);
     }
 
     public static Vector2Int WorldToGrid(Vector2 worldPos)
@@ -135,4 +140,20 @@ public class GameManager : MonoBehaviour
     //    }
     //}
     #endregion
+
+    public void PauseGame()
+    {
+        isPaused = !isPaused;
+        pause.SetActive(isPaused);
+
+        Time.timeScale = isPaused ? 0 : 1;
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
+    }
 }
