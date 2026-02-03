@@ -53,10 +53,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform block in tetromino)
         {
-            Vector2 pos = new Vector2(
-                Mathf.Round(block.position.x),
-                Mathf.Round(block.position.y)
-            );
+            Vector2 pos = new Vector2(Mathf.Round(block.position.x), Mathf.Round(block.position.y));
 
             block.position = pos;
 
