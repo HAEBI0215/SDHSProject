@@ -113,24 +113,26 @@ public class GameManager : MonoBehaviour
         return new Vector2(Mathf.Round(v.x), Mathf.Round(v.y));
     }
 
-    void OnDrawGizmos()
-    {
-        if (grid == null) return;
+    #region 기즈모
+    //void OnDrawGizmos()
+    //{
+    //    if (grid == null) return;
 
-        Gizmos.color = Color.gray;
+    //    Gizmos.color = Color.gray;
 
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                Vector3 worldPos = new Vector3(
-                    x + minX,
-                    y + minY,
-                    0
-                );
+    //    for (int x = 0; x < width; x++)
+    //    {
+    //        for (int y = 0; y < height; y++)
+    //        {
+    //            Vector3 worldPos = new Vector3(
+    //                x + minX,
+    //                y + minY,
+    //                0
+    //            );
 
-                Gizmos.DrawWireCube(worldPos, Vector3.one);
-            }
-        }
-    }
+    //            Gizmos.DrawWireCube(worldPos, Vector3.one);
+    //        }
+    //    }
+    //}
+    #endregion
 }
