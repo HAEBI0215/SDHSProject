@@ -32,6 +32,26 @@ public class Block : MonoBehaviour
         }
     }
 
+    public void Right_Move()
+    {
+        TryMove(Vector3.right);
+    }
+    public void Left_Move()
+    {
+        TryMove(Vector3.left);
+    }
+    public void Rot_Block()
+    {
+        transform.Rotate(0, 0, 90);
+
+        if (!GameManager.IsValidPosition(transform))
+            transform.Rotate(0, 0, -90);
+    }
+    public void Drop_Block()
+    {
+        TryMove(Vector3.down);
+    }
+
     void Drop()
     {
         if (Input.GetKeyDown(KeyCode.S))
